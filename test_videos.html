@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Vídeos - ANDA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .video-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        video {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+            margin: 1rem 0;
+        }
+        .error {
+            background: #ffebee;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #f44336;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎬 Teste de Vídeos da ANDA</h1>
+    
+    <div class="info">
+        <p><strong>📋 Instruções:</strong></p>
+        <ul>
+            <li>Certifique-se de que está a aceder via <strong>http://localhost:8000/test_videos.html</strong></li>
+            <li>Os vídeos devem carregar automaticamente</li>
+            <li>Se não funcionarem, verifique o console do navegador (F12)</li>
+        </ul>
+    </div>
+
+    <div class="video-container">
+        <h2>📺 Vídeo 1 - RTP África (Parte 1)</h2>
+        <video controls preload="metadata">
+            <source src="./public/videos/rtp-africa-anda2-1.mp4" type="video/mp4">
+            <p class="error">❌ Seu navegador não suporta vídeos HTML5.</p>
+        </video>
+        <p><strong>Caminho:</strong> ./public/videos/rtp-africa-anda2-1.mp4</p>
+        <p><a href="./public/videos/rtp-africa-anda2-1.mp4" target="_blank">🔗 Tentar abrir diretamente</a></p>
+    </div>
+
+    <div class="video-container">
+        <h2>📺 Vídeo 2 - RTP África (Parte 2)</h2>
+        <video controls preload="metadata">
+            <source src="./public/videos/rtp-africa-anda2-2.mp4" type="video/mp4">
+            <p class="error">❌ Seu navegador não suporta vídeos HTML5.</p>
+        </video>
+        <p><strong>Caminho:</strong> ./public/videos/rtp-africa-anda2-2.mp4</p>
+        <p><a href="./public/videos/rtp-africa-anda2-2.mp4" target="_blank">🔗 Tentar abrir diretamente</a></p>
+    </div>
+
+    <div class="video-container">
+        <h2>🔧 Teste Alternativo</h2>
+        <p>Se os vídeos acima não funcionarem, tente estes caminhos:</p>
+        
+        <h3>Caminho Absoluto:</h3>
+        <video controls preload="metadata" style="max-width: 400px;">
+            <source src="/public/videos/rtp-africa-anda2-1.mp4" type="video/mp4">
+        </video>
+        
+        <h3>Caminho Relativo Alternativo:</h3>
+        <video controls preload="metadata" style="max-width: 400px;">
+            <source src="public/videos/rtp-africa-anda2-1.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="info">
+        <h3>🛠️ Diagnóstico:</h3>
+        <p>Se os vídeos não funcionarem:</p>
+        <ol>
+            <li>Verifique se o servidor está rodando: <code>python -m http.server 8000</code></li>
+            <li>Acesse: <code>http://localhost:8000/test_videos.html</code></li>
+            <li>Abra o console do navegador (F12) para ver erros</li>
+            <li>Tente acessar os vídeos diretamente pelos links acima</li>
+        </ol>
+    </div>
+
+    <script>
+        // Verificar se os vídeos carregaram
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('video');
+            videos.forEach((video, index) => {
+                video.addEventListener('loadedmetadata', function() {
+                    console.log(`✅ Vídeo ${index + 1} carregado com sucesso!`);
+                });
+                
+                video.addEventListener('error', function(e) {
+                    console.error(`❌ Erro ao carregar vídeo ${index + 1}:`, e);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
